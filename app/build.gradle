@@ -9,16 +9,19 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     defaultConfig {
+        buildConfigField 'String', 'BASE_URL', "\"http://careers.picpay.com/tests/mobdev/\""
         applicationId "com.picpay.desafio.android"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
         vectorDrawables.useSupportLibrary = true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    viewBinding.enabled = true
+
     buildTypes {
         debug {}
 
@@ -37,6 +40,7 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
 }
 
 dependencies {
@@ -74,6 +78,8 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$moshi_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor"
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
 
@@ -88,5 +94,7 @@ dependencies {
 
     androidTestImplementation "androidx.test:runner:$test_runner_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espresso_version"
     androidTestImplementation "androidx.test:core-ktx:$core_ktx_test_version"
+
 }
